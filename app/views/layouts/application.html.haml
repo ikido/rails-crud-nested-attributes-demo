@@ -22,10 +22,8 @@
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
             = highlighted_link_to 'Clients', clients_path, 'clients'
-            %li
-              %a{:href => "#about"} Contacts
-            %li
-              %a{:href => "#contact"} Assignments
+            = highlighted_link_to 'Contacts', contacts_path, 'contacts'
+            = highlighted_link_to 'Assignments', assignments_path, 'assignments'
 
     .container
 

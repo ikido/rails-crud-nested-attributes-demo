@@ -6,6 +6,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @contacts = @client.contacts
   end
 
   def new

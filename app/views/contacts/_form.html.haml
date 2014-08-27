@@ -1,7 +1,8 @@
-= simple_form_for( @client ) do |f|
-  = f.input :company, label: 'Client Company'
-  = f.input :email, label: 'Main Email'
-  = f.input :phone, label: 'Main Phone'
+= simple_form_for [@client, @contact] do |f|
+  = f.input :name, label: 'Contact Name'
+  = f.input :job_title
+  = f.input :email
+  = f.input :phone
   = f.input :account_manager
 
   %button.btn.btn-success{ type: 'submit' }

@@ -1,4 +1,4 @@
-%h2 Edit Client: #{@client.company.titleize}
+%h2 Edit Contact: #{@client.company}
 
 %ol.breadcrumb
   %li
@@ -7,9 +7,9 @@
       Home
   %li= link_to 'Clients', clients_path
   %li= link_to @client.company.titleize, client_path(@client)
+  %li= link_to @contact.name.titleize, client_contact_path(@client, @contact)
   %li.active Edit
 
 .row
   .col-md-6
     = render 'form'
-

@@ -2,6 +2,13 @@
   Listing all clients
   =link_to 'Create', new_client_path, class: "btn btn-default"
 
+%ol.breadcrumb
+  %li
+    = link_to root_path do
+      %span.glyphicon.glyphicon-home
+      Home
+  %li.active Clients
+
 - if @clients.empty?
   .well No clients found
 
@@ -13,22 +20,18 @@
         %th Email
         %th Phone
         %th Account Manager
+        %th Number of contacts
         %th
 
     %tbody
       - @clients.each do |c|
         %tr
-          %td= c.company
+          %td= link_to c.company.titleize, client_path(c)
           %td= c.email
           %td= c.phone
           %td= c.account_manager
+          %td= c.contacts.size
           %td.actions
             = link_to client_path(c), class: 'btn btn-default btn-xs' do
               %span.glyphicon.glyphicon-eye-open
               View
-            = link_to edit_client_path(c), class: 'btn btn-default btn-xs' do
-              %span.glyphicon.glyphicon-edit
-              Edit
-            = link_to client_path(c), class: 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' }, method: :delete do
-              %span.glyphicon.glyphicon-trash
-              Delete

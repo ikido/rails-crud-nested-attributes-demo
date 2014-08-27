@@ -1,0 +1,30 @@
+- if @contacts.empty?
+  .well No contacts found
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        - if @client.blank?
+          %th Client Company
+        %th Contact Name
+        %th Job Title
+        %th Email
+        %th Phone
+        %th Account Manager
+        %th
+
+    %tbody
+      - @contacts.each do |c|
+        %tr
+          - if @client.blank?
+            %td= link_to c.client_company.titleize, client_path(c.client)
+
+          %td= link_to c.name.titleize, client_contact_path(c.client, c)
+          %td= c.job_title
+          %td= c.email
+          %td= c.phone
+          %td= c.account_manager
+          %td.actions
+            = link_to client_contact_path(c.client, c), class: 'btn btn-default btn-xs' do
+              %span.glyphicon.glyphicon-eye-open
+              View

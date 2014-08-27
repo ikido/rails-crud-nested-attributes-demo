@@ -1,6 +1,6 @@
 %h2
-  Client:
-  = @client.company.titleize
+  Contact:
+  = @contact.name.titleize
 
 %ol.breadcrumb
   %li
@@ -8,7 +8,9 @@
       %span.glyphicon.glyphicon-home
       Home
   %li= link_to 'Clients', clients_path
-  %li.active= @client.company.titleize
+  %li= link_to @client.company.titleize, client_path(@client)
+  %li.active= @contact.name.titleize
+
 
 %table.table.table-striped
   %tr
@@ -24,18 +26,10 @@
     %td.attribute Account Manager
     %td.value= @client.account_manager
 
-= link_to edit_client_path(@client), class: 'btn btn-default btn-success' do
+= link_to edit_client_contact_path(@client, @contact), class: 'btn btn-default btn-success' do
   %span.glyphicon.glyphicon-edit
   Edit
-= link_to client_path(@client), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
+= link_to client_contact_path(@client, @contact), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
   %span.glyphicon.glyphicon-trash
   Delete
-= link_to 'Cancel', clients_path, class: 'btn btn-default'
-
-%hr
-
-%h3
-  Contacts
-  = link_to 'Create', new_client_contact_path(@client), class: "btn btn-default"
-
-.well= render 'contacts/contacts'
+= link_to 'Cancel', client_path(@client), class: 'btn btn-default'
