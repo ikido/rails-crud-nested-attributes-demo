@@ -1,0 +1,34 @@
+%h2
+  Listing all clients
+  =link_to 'Create', new_client_path, class: "btn btn-default"
+
+- if @clients.empty?
+  .well No clients found
+
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Client Company
+        %th Email
+        %th Phone
+        %th Account Manager
+        %th
+
+    %tbody
+      - @clients.each do |c|
+        %tr
+          %td= c.company
+          %td= c.email
+          %td= c.phone
+          %td= c.account_manager
+          %td.actions
+            = link_to client_path(c), class: 'btn btn-default btn-xs' do
+              %span.glyphicon.glyphicon-eye-open
+              View
+            = link_to edit_client_path(c), class: 'btn btn-default btn-xs' do
+              %span.glyphicon.glyphicon-edit
+              Edit
+            = link_to client_path(c), class: 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' }, method: :delete do
+              %span.glyphicon.glyphicon-trash
+              Delete

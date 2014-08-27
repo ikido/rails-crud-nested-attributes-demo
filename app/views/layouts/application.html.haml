@@ -18,15 +18,19 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} Opus Pro
+          %a.navbar-brand{:href => root_path} Opus Pro
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "#"} Clients
+            = highlighted_link_to 'Clients', clients_path, 'clients'
             %li
               %a{:href => "#about"} Contacts
             %li
               %a{:href => "#contact"} Assignments
 
     .container
+
+      - flash.each do |type, message|
+        %div{ class: "alert alert-#{bootstrap_flash_for(type)} fade in" }
+          = message
+
       = yield
