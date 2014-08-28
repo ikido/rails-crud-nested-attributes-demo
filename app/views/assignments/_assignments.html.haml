@@ -1,0 +1,37 @@
+- if @assignments.empty?
+  .alert.alert-info No assignments found
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        - if @client.blank?
+          %th Client Company
+        - if @contact.blank?
+          %th Contact
+          %th Contact Email
+          %th Contact Phone
+        %th Title
+        %th Potential Fee
+        %th Agreement type
+        %th Agreement currency
+        %th Agreement rate type
+        %th
+
+    %tbody
+      - @assignments.each do |a|
+        %tr
+          - if @client.blank?
+            %td= link_to a.client_company.titleize, client_path(a.client)
+          - if @contact.blank?
+            %td= link_to a.contact_name.titleize, contact_path(a.contact)
+            %td= a.contact_email
+            %td= a.contact_phone
+          %td= link_to a.title.titleize, assignment_path(a)
+          %td= a.potential_fee
+          %td= a.agreement_type
+          %td= a.agreement_currency
+          %td= a.agreement_rate_type
+          %td.actions
+            = link_to assignment_path(a), class: 'btn btn-default btn-xs' do
+              %span.glyphicon.glyphicon-eye-open
+              View

@@ -1,0 +1,53 @@
+%h2
+  Assignment:
+  = @assignment.title.titleize
+
+%ol.breadcrumb
+  %li
+    = link_to root_path do
+      %span.glyphicon.glyphicon-home
+      Home
+  %li= link_to 'Clients', clients_path
+  %li= link_to @assignment.client_company.titleize, client_path(@assignment.client)
+  %li= link_to @assignment.contact_name.titleize, contact_path(@assignment.contact)
+  %li.active= @assignment.title.titleize
+
+.row
+  .col-md-6
+    %table.table.table-striped
+      %tr
+        %td.attribute Client Company
+        %td.value= @assignment.client_company.titleize
+      %tr
+        %td.attribute Contact
+        %td.value= @assignment.contact_name
+      %tr
+        %td.attribute Contact Phone
+        %td.value= @assignment.contact_phone
+      %tr
+        %td.attribute Contact Email
+        %td.value= @assignment.contact_email
+      %tr
+        %td.attribute Title
+        %td.value= @assignment.title.titleize
+      %tr
+        %td.attribute Potential fee
+        %td.value= @assignment.potential_fee
+      %tr
+        %td.attribute Search Agreement Type
+        %td.value= @assignment.agreement_type
+      %tr
+        %td.attribute Search Agreement Currency
+        %td.value= @assignment.agreement_currency
+      %tr
+        %td.attribute Search Agreement Rate Type
+        %td.value= @assignment.agreement_rate_type
+
+    = link_to edit_assignment_path(@assignment), class: 'btn btn-default btn-success' do
+      %span.glyphicon.glyphicon-edit
+      Edit
+    = link_to assignment_path(@assignment), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
+      %span.glyphicon.glyphicon-trash
+      Delete
+    = link_to 'Cancel', :back, class: 'btn btn-default'
+

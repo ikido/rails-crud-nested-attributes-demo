@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: 
+  potential_fee: 
+  search_agreement_field_1: MyString
+  search_agreement_field_2: MyString
+  search_agreement_field_3: MyString
+
+two:
+  title: 
+  potential_fee: 
+  search_agreement_field_1: MyString
+  search_agreement_field_2: MyString
+  search_agreement_field_3: MyString

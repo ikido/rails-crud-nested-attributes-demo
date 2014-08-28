@@ -10,27 +10,29 @@
   %li= link_to 'Clients', clients_path
   %li.active= @client.company.titleize
 
-%table.table.table-striped
-  %tr
-    %td.attribute Client Company
-    %td.value= @client.company
-  %tr
-    %td.attribute Main Email
-    %td.value= @client.email
-  %tr
-    %td.attribute Main Phone
-    %td.value= @client.phone
-  %tr
-    %td.attribute Account Manager
-    %td.value= @client.account_manager
+.row
+  .col-md-6
+    %table.table.table-striped
+      %tr
+        %td.attribute Client Company
+        %td.value= @client.company
+      %tr
+        %td.attribute Main Email
+        %td.value= @client.email
+      %tr
+        %td.attribute Main Phone
+        %td.value= @client.phone
+      %tr
+        %td.attribute Account Manager
+        %td.value= @client.account_manager
 
-= link_to edit_client_path(@client), class: 'btn btn-default btn-success' do
-  %span.glyphicon.glyphicon-edit
-  Edit
-= link_to client_path(@client), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
-  %span.glyphicon.glyphicon-trash
-  Delete
-= link_to 'Cancel', :back, class: 'btn btn-default'
+    = link_to edit_client_path(@client), class: 'btn btn-default btn-success' do
+      %span.glyphicon.glyphicon-edit
+      Edit
+    = link_to client_path(@client), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
+      %span.glyphicon.glyphicon-trash
+      Delete
+    = link_to 'Cancel', :back, class: 'btn btn-default'
 
 %hr
 

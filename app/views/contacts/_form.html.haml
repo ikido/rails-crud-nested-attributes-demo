@@ -1,12 +1,12 @@
-= simple_form_for @contact do |f|
-  = f.input :name, label: 'Contact Name'
-  = f.input :job_title
-  = f.input :email
-  = f.input :phone
-  = f.input :account_manager
+- # = simple_form_for @contact do |f|
+= form.input :name, label: 'Contact Name'
+= form.input :job_title
+= form.input :email
+= form.input :phone
+= form.input :account_manager
 
-  %button.btn.btn-success{ type: 'submit' }
-    %span.glyphicon.glyphicon-floppy-disk
-    Save
+%button.btn.btn-success{ type: 'submit' }
+  %span.glyphicon.glyphicon-floppy-disk
+  Save
 
-  = link_to 'Cancel', :back, class: 'btn btn-default'
+= link_to 'Cancel', :back, class: 'btn btn-default'
