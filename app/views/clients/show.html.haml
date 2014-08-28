@@ -30,7 +30,7 @@
 = link_to client_path(@client), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
   %span.glyphicon.glyphicon-trash
   Delete
-= link_to 'Cancel', clients_path, class: 'btn btn-default'
+= link_to 'Cancel', :back, class: 'btn btn-default'
 
 %hr
 

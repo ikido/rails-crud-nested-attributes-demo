@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :contacts
   resources :assignments
-  resources :clients do
+
+  resources :clients, shallow: true do
     resources :contacts
-    resources :assignments
+    #resources :assignments
   end
 end

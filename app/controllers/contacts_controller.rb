@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_client, except: :index
+  before_action :set_client, only: [:new, :create]
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
+    @contact.client = @client
   end
 
   def create
@@ -29,7 +30,7 @@ class ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      redirect_to client_contact_path(@client, @contact), notice: 'Contact was successfully updated.'
+      redirect_to contact_path(@contact), notice: 'Contact was successfully updated.'
     else
       render :edit
     end

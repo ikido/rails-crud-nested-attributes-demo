@@ -8,28 +8,28 @@
       %span.glyphicon.glyphicon-home
       Home
   %li= link_to 'Clients', clients_path
-  %li= link_to @client.company.titleize, client_path(@client)
+  %li= link_to @contact.client_company.titleize, client_path(@contact.client)
   %li.active= @contact.name.titleize
 
 
 %table.table.table-striped
   %tr
     %td.attribute Client Company
-    %td.value= @client.company
+    %td.value= @contact.client_company
   %tr
     %td.attribute Main Email
-    %td.value= @client.email
+    %td.value= @contact.client_email
   %tr
     %td.attribute Main Phone
-    %td.value= @client.phone
+    %td.value= @contact.client_phone
   %tr
     %td.attribute Account Manager
-    %td.value= @client.account_manager
+    %td.value= @contact.client_account_manager
 
-= link_to edit_client_contact_path(@client, @contact), class: 'btn btn-default btn-success' do
+= link_to edit_contact_path(@contact), class: 'btn btn-default btn-success' do
   %span.glyphicon.glyphicon-edit
   Edit
-= link_to client_contact_path(@client, @contact), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
+= link_to contact_path(@contact), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
   %span.glyphicon.glyphicon-trash
   Delete
-= link_to 'Cancel', client_path(@client), class: 'btn btn-default'
+= link_to 'Cancel', :back, class: 'btn btn-default'

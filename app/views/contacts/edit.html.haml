@@ -1,4 +1,4 @@
-%h2 Edit Contact: #{@client.company}
+%h2 Edit Contact: #{@contact.client_company}
 
 %ol.breadcrumb
   %li
@@ -6,8 +6,8 @@
       %span.glyphicon.glyphicon-home
       Home
   %li= link_to 'Clients', clients_path
-  %li= link_to @client.company.titleize, client_path(@client)
-  %li= link_to @contact.name.titleize, client_contact_path(@client, @contact)
+  %li= link_to @contact.client_company.titleize, client_path(@contact.client)
+  %li= link_to @contact.name.titleize, contact_path(@contact)
   %li.active Edit
 
 .row
