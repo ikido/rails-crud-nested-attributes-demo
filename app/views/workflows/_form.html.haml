@@ -16,7 +16,7 @@
               = s.input :id, as: :hidden
               = s.input :name, as: :hidden
               = s.input :order, as: :hidden
-              = s.input :active, label: s.object.name, disabled: s.object.is_current_stage_for?(@assignment)
+              = s.input :active, label: s.object.name, disabled: s.object.disabled?
 
     .col-md-6
       %button.btn.btn-success{ type: 'submit' }

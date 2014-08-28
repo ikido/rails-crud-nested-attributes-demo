@@ -63,12 +63,23 @@ class Assignment < ActiveRecord::Base
     workflow_stages.active
   end
 
-  def has_workflow?
+  def has_workflow_stages?
     !active_workflow_stages.blank?
   end
 
+  def has_actionable_stages?
+    !workflow_stages.actionable.blank?
+  end
+
   def current_stage
-    current_workflow_stage.name
+    current_workflow_stage.blank? ? 'None' : current_workflow_stage.name
+  end
+
+  def switch_to_next_active_stage
+    active_stages = active_workflow_stages
+    current_index = active_stages.find_index(current_workflow_stage)
+    self.current_workflow_stage = active_stages[current_index+1]
+    self.save
   end
 
 end
