@@ -1,0 +1,26 @@
+.row
+  = simple_form_for @assignment, url: assignment_workflow_path(@assignment, @workflow), wrapper: :vertical_radio_and_checkboxes do |f|
+
+    = f.simple_fields_for :workflow_phases do |p|
+      .col-md-6
+        .panel.panel-default
+          .panel-heading= p.object.name
+          .panel-body
+
+            = p.input :id, as: :hidden
+            = p.input :name, as: :hidden
+            = p.input :order, as: :hidden
+
+            = p.simple_fields_for :workflow_stages do |s|
+
+              = s.input :id, as: :hidden
+              = s.input :name, as: :hidden
+              = s.input :order, as: :hidden
+              = s.input :active, label: s.object.name, disabled: s.object.is_current_stage_for?(@assignment)
+
+    .col-md-6
+      %button.btn.btn-success{ type: 'submit' }
+        %span.glyphicon.glyphicon-floppy-disk
+        Save
+
+      = link_to 'Cancel', :back, class: 'btn btn-default'

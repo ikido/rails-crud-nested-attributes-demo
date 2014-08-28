@@ -1,0 +1,15 @@
+%h2 Edit Workflow for #{@assignment.title.titleize}
+
+%ol.breadcrumb
+  %li
+    = link_to root_path do
+      %span.glyphicon.glyphicon-home
+      Home
+  %li= link_to 'Clients', clients_path
+  %li= link_to @assignment.client_company.titleize, client_path(@assignment.client)
+  %li= link_to @assignment.contact_name.titleize, contact_path(@assignment.contact)
+  %li= link_to @assignment.title.titleize, assignment_path(@assignment)
+  %li.active Edit workflow
+
+
+= render partial: 'form'

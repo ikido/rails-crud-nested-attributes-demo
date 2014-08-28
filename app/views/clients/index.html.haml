@@ -1,6 +1,8 @@
 %h2
   Listing all clients
-  =link_to 'Create', new_client_path, class: "btn btn-default"
+  = link_to new_client_path, class: "btn btn-success btn-sm" do
+    %span.glyphicon.glyphicon-plus
+    Create
 
 %ol.breadcrumb
   %li
@@ -10,7 +12,7 @@
   %li.active Clients
 
 - if @clients.empty?
-  .well No clients found
+  .alert.alert-info No clients found
 
 - else
   %table.table.table-striped

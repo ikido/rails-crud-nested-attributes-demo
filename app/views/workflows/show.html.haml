@@ -1,0 +1,31 @@
+%h2
+  Track progress for #{@assignment.title.titleize}
+  %br/
+  %small Current stage: #{@assignment.current_stage}
+
+%ol.breadcrumb
+  %li
+    = link_to root_path do
+      %span.glyphicon.glyphicon-home
+      Home
+  %li= link_to 'Clients', clients_path
+  %li= link_to @assignment.client_company.titleize, client_path(@assignment.client)
+  %li= link_to @assignment.contact_name.titleize, contact_path(@assignment.contact)
+  %li= link_to @assignment.title.titleize, assignment_path(@assignment)
+  %li.active Track Progress
+
+
+%ul.list-group
+  - @workflow_stages.each do |s|
+    %li.list-group-item{ class: s == @assignment.current_workflow_stage ? 'list-group-item-info' : '' }
+      = s.name
+      - if s == @assignment.current_workflow_stage
+        %span.glyphicon.glyphicon-star
+
+= link_to complete_current_stage_assignment_workflow_path(@assignment), class: 'btn btn-success' do
+  %span.glyphicon.glyphicon-ok
+  Complete Current Stage
+= link_to cancel_current_stage_assignment_workflow_path(@assignment), class: 'btn btn-danger' do
+  %span.glyphicon.glyphicon-remove
+  Cancel Current Stage
+= link_to 'Cancel', :back, class: 'btn btn-default'

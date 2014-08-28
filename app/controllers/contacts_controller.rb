@@ -20,7 +20,7 @@ class ContactsController < ApplicationController
     @contact.client = @client
 
     if @contact.save
-      redirect_to client_path(@client), notice: 'Contact was successfully created.'
+      redirect_to contact_path(@contact), notice: 'Contact was successfully created.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact.destroy
-    redirect_to client_path(@client), notice: 'Contact was successfully destroyed.'
+    redirect_to client_path(@contact.client), notice: 'Contact was successfully destroyed.'
   end
 
   private

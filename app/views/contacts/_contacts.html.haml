@@ -17,7 +17,7 @@
       - @contacts.each do |c|
         %tr
           - if @client.blank?
-            %td= link_to c.client_company.titleize, client_path(c.client)
+            %td= c.client_company.titleize
 
           %td= link_to c.name.titleize, contact_path(c)
           %td= c.job_title

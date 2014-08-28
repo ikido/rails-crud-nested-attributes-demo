@@ -21,9 +21,9 @@
       - @assignments.each do |a|
         %tr
           - if @client.blank?
-            %td= link_to a.client_company.titleize, client_path(a.client)
+            %td= a.client_company.titleize
           - if @contact.blank?
-            %td= link_to a.contact_name.titleize, contact_path(a.contact)
+            %td= a.contact_name.titleize
             %td= a.contact_email
             %td= a.contact_phone
           %td= link_to a.title.titleize, assignment_path(a)

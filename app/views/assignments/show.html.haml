@@ -1,6 +1,10 @@
 %h2
   Assignment:
   = @assignment.title.titleize
+  - if @assignment.has_workflow?
+    = link_to assignment_workflow_path(@assignment), class: 'btn btn-default btn-success' do
+      %span.glyphicon.glyphicon-star
+      View Workflow
 
 %ol.breadcrumb
   %li
@@ -43,9 +47,18 @@
         %td.attribute Search Agreement Rate Type
         %td.value= @assignment.agreement_rate_type
 
+    - if @assignment.has_workflow?
+      = link_to edit_assignment_workflow_path(@assignment), class: 'btn btn-default btn-success' do
+        %span.glyphicon.glyphicon-pencil
+        Edit workflow
+    - else
+      = link_to new_assignment_workflow_path(@assignment), class: 'btn btn-default btn-success' do
+        %span.glyphicon.glyphicon-pencil
+        New workflow
+
     = link_to edit_assignment_path(@assignment), class: 'btn btn-default btn-success' do
       %span.glyphicon.glyphicon-edit
-      Edit
+      Edit Assignment
     = link_to assignment_path(@assignment), class: 'btn btn-default btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do
       %span.glyphicon.glyphicon-trash
       Delete

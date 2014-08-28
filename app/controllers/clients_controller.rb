@@ -17,7 +17,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
 
     if @client.save
-      redirect_to clients_path, notice: 'Client was successfully created.'
+      redirect_to client_path(@client), notice: 'Client was successfully created.'
     else
       render :new
     end

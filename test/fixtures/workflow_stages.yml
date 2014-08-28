@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workflow_phase_id: 1
+  name: MyString
+  selected: false
+  order: 1
+
+two:
+  workflow_phase_id: 1
+  name: MyString
+  selected: false
+  order: 1

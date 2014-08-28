@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_contact, only: [:new, :create]
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, except: [:index, :new, :create]
 
   def index
     @assignments = Assignment.all
@@ -19,7 +19,7 @@ class AssignmentsController < ApplicationController
     @assignment.contact = @contact
 
     if @assignment.save
-      redirect_to edit_assignment_path(@assignment), notice: 'Assignment was successfully created.'
+      redirect_to new_assignment_workflow_path(@assignment), notice: 'Assignment was successfully created.'
     else
       render :new
     end
@@ -27,6 +27,7 @@ class AssignmentsController < ApplicationController
 
   def edit
   end
+
 
   def update
     if @assignment.update(assignment_params)
@@ -38,7 +39,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     @assignment.destroy
-    redirect_to assignment_path(@assignment), notice: 'Assignment was successfully destroyed.'
+    redirect_to contact_path(@assignment.contact), notice: 'Assignment was successfully destroyed.'
   end
 
   private

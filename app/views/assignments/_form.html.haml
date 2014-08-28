@@ -12,10 +12,3 @@
   = form.input :agreement_type, as: :select, collection: Assignment::AGREEMENT_TYPES, include_blank: false
   = form.input :agreement_currency, as: :select, collection: Assignment::AGREEMENT_CURRENCIES, include_blank: false
   = form.input :agreement_rate_type, as: :select, collection: Assignment::AGREEMENT_RATE_TYPES, include_blank: false
-
-
-%button.btn.btn-success{ type: 'submit' }
-  %span.glyphicon.glyphicon-floppy-disk
-  Save
-
-= link_to 'Cancel', :back, class: 'btn btn-default'

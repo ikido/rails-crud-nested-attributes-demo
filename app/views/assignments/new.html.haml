@@ -4,3 +4,9 @@
 
     = simple_form_for [@contact, @assignment] do |form|
       = render 'form', form: form
+
+      %button.btn.btn-success{ type: 'submit' }
+        %span.glyphicon.glyphicon-chevron-right
+        Proceed
+
+      = link_to 'Cancel', :back, class: 'btn btn-default'

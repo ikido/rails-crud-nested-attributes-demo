@@ -12,4 +12,5 @@
 
 .row
   .col-md-6
-    = render 'form'
+    = simple_form_for @contact do |form|
+      = render 'form', form: form

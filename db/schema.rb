@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828072858) do
+ActiveRecord::Schema.define(version: 20140828120408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140828072858) do
     t.string   "agreement_rate_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_workflow_stage_id"
   end
 
   create_table "clients", force: true do |t|
@@ -43,6 +44,23 @@ ActiveRecord::Schema.define(version: 20140828072858) do
     t.string   "phone"
     t.string   "email"
     t.string   "account_manager"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workflow_phases", force: true do |t|
+    t.integer  "assignment_id"
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workflow_stages", force: true do |t|
+    t.integer  "workflow_phase_id"
+    t.string   "name"
+    t.boolean  "active"
+    t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
