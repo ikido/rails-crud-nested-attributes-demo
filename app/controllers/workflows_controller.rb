@@ -11,7 +11,7 @@ class WorkflowsController < ApplicationController
   def update
     if @assignment.update(workflow_params)
       if @assignment.current_workflow_stage.blank?
-        @assignment.current_workflow_stage = @assignment.active_workflow_stages.first
+        @assignment.current_workflow_stage = @assignment.next_actionable_workflow_stage
         @assignment.save
       end
 
@@ -26,13 +26,13 @@ class WorkflowsController < ApplicationController
   end
 
   def complete_current_stage
-    @assignment.current_workflow_stage.mark_completed
+    @assignment.current_workflow_stage.mark_completed!
     @assignment.switch_to_next_active_stage
     redirect_to assignment_workflow_path(@assignment), notice: 'Current stage marked as completed'
   end
 
   def cancel_current_stage
-    @assignment.current_workflow_stage.mark_cancelled
+    @assignment.current_workflow_stage.mark_cancelled!
     @assignment.switch_to_next_active_stage
     redirect_to assignment_workflow_path(@assignment), notice: 'Current stage marked as cancelled'
   end

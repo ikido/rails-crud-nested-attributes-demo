@@ -4,34 +4,35 @@ class WorkflowStage < ActiveRecord::Base
   validates :name, :order, presence: true
 
   def self.active
-    self.where(active: true)
-      .includes(:workflow_phase)
-      .order('workflow_phases.order ASC, workflow_stages.order ASC')
+    self.where(active: true).ordered
+  end
+
+  def self.ordered
+    includes(:workflow_phase)
+    .order('workflow_phases.order ASC, workflow_stages.order ASC')
   end
 
   def self.actionable
-    active.where(self.arel_table[:state].not_eq_all(['completed', 'cancelled']))
+    active.where(self.arel_table[:state].not_eq_all(['completed', 'cancelled', 'skipped']))
   end
 
-  def mark_completed
-    self.state = 'completed'
-    self.save
-  end
+  state_machine :state, :initial => :new do
 
-  def mark_cancelled
-    self.state = 'cancelled'
-    save
-  end
+    event :mark_cancelled do
+      transition any => :cancelled
+    end
 
-  def completed?
-    state == 'completed'
-  end
+    event :mark_completed do
+      transition any => :completed
+    end
 
-  def cancelled?
-    state == 'cancelled'
+    event :mark_skipped do
+      transition any => :skipped
+    end
+
   end
 
   def disabled?
-    (self.assignment and self.assignment.current_workflow_stage == self) or cancelled? or completed?
+    (self.assignment and self.assignment.current_workflow_stage == self) or cancelled? or completed? or skipped?
   end
 end

@@ -63,6 +63,10 @@ class Assignment < ActiveRecord::Base
     workflow_stages.active
   end
 
+  def next_actionable_workflow_stage
+    workflow_stages.actionable.first
+  end
+
   def has_workflow_stages?
     !active_workflow_stages.blank?
   end
@@ -80,6 +84,16 @@ class Assignment < ActiveRecord::Base
     current_index = active_stages.find_index(current_workflow_stage)
     self.current_workflow_stage = active_stages[current_index+1]
     self.save
+
+    # Mark unchecked stages that are behind current as skipped
+    all_stages = workflow_stages.ordered
+    new_current_stage_index = all_stages.find_index(self.current_workflow_stage)
+    all_stages.each_with_index do |stage, index|
+      if !stage.active? and (new_current_stage_index.blank? or index < new_current_stage_index)
+        stage.mark_skipped
+      end
+    end
+
   end
 
 end
