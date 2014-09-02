@@ -13,6 +13,8 @@ gem 'haml'
 gem 'simple_form', '3.1.0.rc2'
 gem 'state_machine', git: 'git://github.com/seuros/state_machine.git'
 gem 'rails_12factor', group: :production
+gem 'acts_as_tenant'
+gem 'devise'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
